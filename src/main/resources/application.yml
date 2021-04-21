@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: demo-feign
+          uri: lb://demo-feign
+          predicates:
+            Path=/feign/**
+        - id: scholl-student
+          uri: lb://school-student-service
+          predicates:
+            Path=/student/**
+        - id: scholl-employee
+          uri: lb://school-employee-service
+          predicates:
+            Path=/employee/**
+        - id: scholl-student-employee
+          uri: lb://school-service
+          predicates:
+            Path=/schooldetails/**
+
